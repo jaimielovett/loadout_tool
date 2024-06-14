@@ -4,7 +4,6 @@
 	import { applyAction, deserialize } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { toolVersion } from '$lib/store';
-	import toast from 'svelte-french-toast';
 
 	async function onSubmit(event: Event) {
 		const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -19,9 +18,6 @@
 		if (result.type === 'success') {
 			// rerun all `load` functions, following the successful update
 			await invalidateAll();
-		} else {
-			if (result.data.notLoggedIn)
-				toast.error('You must be logged in to create a loadout', { position: 'bottom-right' });
 		}
 
 		applyAction(result);
@@ -36,7 +32,7 @@
 	<hr class="mb-4 mt-2" />
 
 	<div class="flex flex-grow flex-col">
-		<form method="post" on:submit|preventDefault={onSubmit} action="?/createLoadout">
+		<form method="POST" on:submit|preventDefault={onSubmit} action="/?/createLoadout">
 			<Button class="w-full" type="submit">
 				New Loadout
 				<CirclePlus class="ml-2 h-4 w-4" />
