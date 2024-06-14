@@ -1,13 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
-import type { Actions, PageServerLoad } from '../auth/login/$typeslogin/$types';
-
-export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.getSession();
-	if (session) {
-		throw redirect(302, '/');
-	}
-};
+import type { Actions } from './$types';
 
 export const actions: Actions = {
 	default: async (event) => {

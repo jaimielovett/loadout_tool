@@ -92,7 +92,7 @@
 						</Button>
 
 						<div class="text-center text-base">
-							Don't have an account? <a class="underline" href="/">Sign Up</a>
+							Don't have an account? <a class="underline" href="/signup">Sign Up</a>
 						</div>
 					</div>
 				</form>

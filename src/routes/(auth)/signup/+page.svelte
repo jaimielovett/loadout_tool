@@ -46,12 +46,12 @@
 	}
 </script>
 
-<div class="grid grid-cols-2 h-screen">
+<div class="grid h-screen grid-cols-2">
 	<div class="col-span-1">
-		<div class="bg-foreground h-full w-full" />
+		<div class="h-full w-full bg-foreground" />
 	</div>
 	<div class="flex flex-col justify-center lg:p-8">
-		<div class="mx-auto flex w-full flex-col -mt-12 justify-center space-y-6 sm:w-[350px]">
+		<div class="mx-auto -mt-12 flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 			<!-- Signup Page Header -->
 			<div class="flex flex-col text-center">
 				<h1 class="text-2xl font-semibold tracking-tight">Signup for an account</h1>
@@ -59,7 +59,7 @@
 			<!-- Signup Form -->
 			<div class={cn('grid gap-6')} {...$$restProps}>
 				<form method="POST" on:submit|preventDefault={onSubmit}>
-					<div class="grid gap-2 mb-6">
+					<div class="mb-6 grid gap-2">
 						<div class="grid gap-1">
 							<Label class="sr-only" for="email">Email</Label>
 							<Input
@@ -117,6 +117,9 @@
 							{/if}
 							Sign Up
 						</Button>
+					</div>
+					<div class="text-center text-base">
+						Already have an account? <a class="underline" href="/login">Login</a>
 					</div>
 				</form>
 			</div>

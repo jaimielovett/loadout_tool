@@ -1,7 +1,7 @@
-import { getAllChassis } from '$lib/server/chassis';
+import type { PageServerLoad } from './$types';
 
-export async function load() {
-	const chassis = await getAllChassis();
-
-	return { chassis };
-}
+export const load: PageServerLoad = async ({ depends, locals: { supabase } }) => {
+	depends('supabase:db:loadouts');
+	const { data: loadouts } = await supabase.from('loadouts').select().order('name');
+	return { loadouts: loadouts ?? [] };
+};
