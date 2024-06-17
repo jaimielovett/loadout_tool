@@ -48,5 +48,5 @@
 	</div>
 
 	<div>Request a feature Report a bug</div>
-	<Button class="w-full" href="/logout">Logout</Button>
+	<Button class="w-full" href="/auth/logout">Logout</Button>
 </aside>

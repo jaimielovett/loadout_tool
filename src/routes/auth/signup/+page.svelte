@@ -28,6 +28,7 @@
 		});
 
 		const result: ActionResult = deserialize(await response.text());
+		console.log(result);
 
 		if (result.type === 'success') {
 			toast.success(
@@ -119,7 +120,7 @@
 						</Button>
 					</div>
 					<div class="text-center text-base">
-						Already have an account? <a class="underline" href="/login">Login</a>
+						Already have an account? <a class="underline" href="/auth/login">Login</a>
 					</div>
 				</form>
 			</div>

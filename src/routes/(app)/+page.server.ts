@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase } }) =>
 
 export const actions: Actions = {
 	createLoadout: async ({ locals: { user, supabase } }) => {
-		if (!user) redirect(302, '/login');
+		if (!user) redirect(302, '/auth/login');
 		const { error, data } = await supabase
 			.from('loadouts')
 			.insert({ user_id: user.id, name: 'New Loadout' })
