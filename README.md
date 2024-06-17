@@ -1,38 +1,54 @@
-# create-svelte
+## Supabase
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+### Start supabase services
 
-## Creating a project
+Initialise Supabase to set up the configuration for developing locally:
+`supabase init`
 
-If you're seeing this, you've probably already done this step. Congrats!
+The start command uses Docker to start the Supabase services.
+This command takes a while to run if it's the first time using the CLI:
+`supabase start`
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+You can use `supabase stop` at any time to stop all services (without resetting your local database). Use `supabase stop --no-backup` to stop all services and reset the local database.
 
-# create a new project in my-app
-npm create svelte@latest my-app
+### Access the projects services
+
+You can now visit the local Supabase dashboard at `http://localhost:54323`. To access the database you can use any Postgres client and access it via `postgresql://postgres:postgres@localhost:54322/postgres`.
+
+### Database migrations
+
+Database changes are managed through migrations.
+
+To generate a new migration run `supabase migration new <migration_name>`.
+
+The migration file will get created in `supabase/migrations/<timestamp>_<migraiton_name>`. Edit the file and add SQL to create tables:
+
+```
+create table
+employees (
+id bigint primary key generated always as identity,
+name text,
+email text,
+created_at timestamptz default now()
+);
 ```
 
-## Developing
+Apply the migration by running `supabase db reset`.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Link your project
 
-```bash
-npm run dev
+Associate your project using `supabase link`.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```
+supabase link --project-ref <project-id>
+
+# To apply the new migration to your local database:
+supabase migration up
+
+# To reset your local database completely:
+supabase db reset
 ```
 
-## Building
+### Deploy database changes
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Deploy any local database changes using `supabase db push`.
